@@ -897,19 +897,6 @@ void OutfitEditor::WriteToFile(DataWriter &writer, const Outfit *outfit)
 	if(!diff || outfit->pluralName != diff->category)
 		if(outfit->pluralName != outfit->name + "s" || diff)
 			writer.Write("plural", outfit->pluralName);
-	if(!diff || outfit->cost != diff->cost)
-		if(outfit->cost || diff)
-			writer.Write("cost", outfit->cost);
-	if(!diff || outfit->mass != diff->mass)
-		if(outfit->mass || diff)
-			writer.Write("mass", outfit->mass);
-	if(!diff || outfit->flotsamSprite != diff->flotsamSprite)
-		if(outfit->flotsamSprite || diff)
-			writer.Write("flotsam sprite", outfit->flotsamSprite->Name());
-
-	if(!diff || outfit->thumbnail != diff->thumbnail)
-		if(outfit->thumbnail || diff)
-			writer.Write("thumbnail", outfit->thumbnail->Name());
 	if(!diff || outfit->licenses != diff->licenses) 
 		if(!outfit->licenses.empty())
 		{
@@ -918,6 +905,19 @@ void OutfitEditor::WriteToFile(DataWriter &writer, const Outfit *outfit)
 				writer.WriteToken(license);
 			writer.Write();
 		}
+	if(!diff || outfit->cost != diff->cost)
+		if(outfit->cost || diff)
+			writer.Write("cost", outfit->cost);
+	if(!diff || outfit->flotsamSprite != diff->flotsamSprite)
+		if(outfit->flotsamSprite || diff)
+			writer.Write("flotsam sprite", outfit->flotsamSprite->Name());
+
+	if(!diff || outfit->thumbnail != diff->thumbnail)
+		if(outfit->thumbnail || diff)
+			writer.Write("thumbnail", outfit->thumbnail->Name());
+	if(!diff || outfit->mass != diff->mass)
+		if(outfit->mass || diff)
+			writer.Write("mass", outfit->mass);
 
 	if(!diff || outfit->attributes.AsBase() != diff->attributes.AsBase())
 		for(auto it = outfit->attributes.begin(); it != outfit->attributes.end(); ++it)
